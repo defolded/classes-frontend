@@ -6,8 +6,8 @@ import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 import { useLLMOutput } from "@llm-ui/react";
 import { codeBlockLookBack, findCompleteCodeBlock, findPartialCodeBlock } from "@llm-ui/code";
 import { markdownLookBack } from "@llm-ui/markdown";
-import { MarkdownComponent } from './MarkdownComponent';
-import { CodeBlock } from './CodeBlock';
+import { MarkdownComponent } from "./MarkdownComponent";
+import { CodeBlock } from "./CodeBlock";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard, faRobot, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Avatar, Button } from "react-daisyui";
@@ -43,7 +43,9 @@ export const ChatMessage: React.FC<IChatMessageProps> = ({ message }) => {
             {isBot ? (
               <FontAwesomeIcon icon={faRobot} />
             ) : message.userInfo?.firstName && message.userInfo?.lastName ? (
-              <span>{`${message.userInfo.firstName.charAt(0)}${message.userInfo.lastName.charAt(0)}`}</span>
+              <span>{`${message.userInfo.firstName.charAt(0)}${message.userInfo.lastName.charAt(
+                0
+              )}`}</span>
             ) : (
               <FontAwesomeIcon icon={faUser} />
             )}
@@ -60,7 +62,12 @@ export const ChatMessage: React.FC<IChatMessageProps> = ({ message }) => {
         </div>
         {isBot && (
           <div className="mt-4">
-            <Button size="sm" shape="square" color="ghost" onClick={() => copy(messageRef?.current?.innerText || "")}>
+            <Button
+              size="sm"
+              shape="square"
+              color="ghost"
+              onClick={() => copy(messageRef?.current?.innerText || "")}
+            >
               <FontAwesomeIcon icon={faClipboard} />
             </Button>
           </div>
