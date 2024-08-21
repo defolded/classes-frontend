@@ -20,7 +20,7 @@ export default function Home() {
     },
   ]);
 
-  const handleSubmit = useCallback(async (value: string) => {
+  const handleSubmit = useCallback(async (value: string, file: File | null) => {
     setIsQuerying(true);
 
     // Add user message to conversations
@@ -34,10 +34,15 @@ export default function Home() {
     ]);
 
     try {
+      const formData = new FormData();
+      formData.append("prompt", value);
+      if (file) {
+        formData.append("file", file);
+      }
+
       const response = await fetch(`${BACKEND_URL}/generate`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: value }),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -47,7 +52,6 @@ export default function Home() {
       const data = await response.json();
       const backendResponse = data.response; // Extract the response object
 
-      // Handle nested response for prerequisites with separate lines
       let formattedMessage;
       if (backendResponse.course_id) {
         formattedMessage = `Course: ${backendResponse.course_name}\nPrerequisites:\n${

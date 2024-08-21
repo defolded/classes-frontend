@@ -1,7 +1,7 @@
 // src/components/ChatInterface.tsx
-'use client'
+"use client";
 
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from "react";
 import { ChatConversations } from "./ChatConversations";
 import { ChatInput } from "./ChatInput";
 import { IChatUIProps } from "../types";
@@ -16,18 +16,18 @@ export const ChatInterface: React.FC<IChatUIProps> = ({
 }) => {
   const chatConversationsContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = useCallback(async (value: string) => {
-    if (onSubmit) {
-      await onSubmit(value);
-    }
-  }, [onSubmit]);
+  const handleSubmit = useCallback(
+    async (value: string, file: File | null) => {
+      if (onSubmit) {
+        await onSubmit(value, file);
+      }
+    },
+    [onSubmit]
+  );
 
   return (
     <div className="flex flex-col h-screen">
-      <div
-        ref={chatConversationsContainerRef}
-        className="flex-grow overflow-y-auto"
-      >
+      <div ref={chatConversationsContainerRef} className="flex-grow overflow-y-auto">
         <ChatConversations
           conversations={conversations}
           isQuerying={isQuerying}
