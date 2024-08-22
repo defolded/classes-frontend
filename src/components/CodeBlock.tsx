@@ -1,4 +1,3 @@
-import React from 'react';
 import { type LLMOutputComponent } from "@llm-ui/react";
 
 export const CodeBlock: LLMOutputComponent = ({ blockMatch }) => {

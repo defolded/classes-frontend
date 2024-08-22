@@ -1,16 +1,15 @@
-// src/components/ChatMessage.tsx
-import React, { useRef } from "react";
-import { IChatMessageProps } from "../types";
-import { MessageRole } from "../enums/MessageRole";
-import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
-import { useLLMOutput } from "@llm-ui/react";
+import { faClipboard, faRobot, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { codeBlockLookBack, findCompleteCodeBlock, findPartialCodeBlock } from "@llm-ui/code";
 import { markdownLookBack } from "@llm-ui/markdown";
-import { MarkdownComponent } from "./MarkdownComponent";
-import { CodeBlock } from "./CodeBlock";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClipboard, faRobot, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useLLMOutput } from "@llm-ui/react";
+import React, { useRef } from "react";
 import { Avatar, Button } from "react-daisyui";
+import { MessageRole } from "../enums/MessageRole";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
+import { IChatMessageProps } from "../types";
+import { CodeBlock } from "./CodeBlock";
+import { MarkdownComponent } from "./MarkdownComponent";
 
 export const ChatMessage: React.FC<IChatMessageProps> = ({ message }) => {
   const messageRef = useRef<HTMLDivElement>(null);

@@ -1,4 +1,3 @@
-// src/types/index.ts
 import { ReactNode, RefObject } from "react";
 import { MessageRole } from "../enums/MessageRole";
 
@@ -19,7 +18,7 @@ export type Conversations = Array<Message>;
 
 export interface IChatUIProps {
   isQuerying: boolean;
-  onSubmit: (value: string) => void;
+  onSubmit: (value: string, file: File | null) => void;
   placeholder: string;
   disabled: boolean;
   conversations: Conversations;
@@ -28,7 +27,7 @@ export interface IChatUIProps {
 
 export interface IChatInputProps {
   disabled: boolean;
-  onSubmit: (value: string) => void;
+  onSubmit: (value: string, file: File | null) => void;
   placeholder: string;
   customSubmitIcon?: ReactNode;
 }

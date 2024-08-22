@@ -1,10 +1,9 @@
-// src/components/ChatInterface.tsx
 "use client";
 
-import React, { useRef, useCallback } from "react";
+import React, { useCallback, useRef } from "react";
+import { IChatUIProps } from "../types";
 import { ChatConversations } from "./ChatConversations";
 import { ChatInput } from "./ChatInput";
-import { IChatUIProps } from "../types";
 
 export const ChatInterface: React.FC<IChatUIProps> = ({
   isQuerying,
@@ -19,7 +18,7 @@ export const ChatInterface: React.FC<IChatUIProps> = ({
   const handleSubmit = useCallback(
     async (value: string, file: File | null) => {
       if (onSubmit) {
-        await onSubmit(value, file);
+        onSubmit(value, file);
       }
     },
     [onSubmit]

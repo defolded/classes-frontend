@@ -1,12 +1,11 @@
-// src/app/page.tsx
 "use client";
 
-import { useState, useCallback } from "react";
-import { ChatInterface } from "../components/ChatInterface";
-import { Conversations } from "../types";
-import { MessageRole } from "../enums/MessageRole";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMailReply } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback, useState } from "react";
+import { ChatInterface } from "../components/ChatInterface";
+import { MessageRole } from "../enums/MessageRole";
+import { Conversations } from "../types";
 
 const BACKEND_URL = "http://127.0.0.1:8000"; // update with api url
 

@@ -1,8 +1,8 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
-import { IChatInputProps } from "../types";
-import { Button, Textarea } from "react-daisyui";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagicWandSparkles, faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Button, Textarea } from "react-daisyui";
+import { IChatInputProps } from "../types";
 
 export const ChatInput: React.FC<IChatInputProps> = ({
   disabled,
@@ -18,6 +18,7 @@ export const ChatInput: React.FC<IChatInputProps> = ({
     (e: React.SyntheticEvent) => {
       e.preventDefault();
       const textArea = textAreaRef?.current;
+      // @ts-ignore
       if (onSubmit && (textArea?.value.trim().length > 0 || selectedFile)) {
         onSubmit(textArea?.value || "", selectedFile);
         textArea && (textArea.value = "");
