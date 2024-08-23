@@ -60,7 +60,7 @@ export const ChatInput: React.FC<IChatInputProps> = ({
   };
 
   return (
-    <div className="flex justify-center items-center relative max-w-4xl mx-auto w-full">
+    <div className="flex justify-center items-center relative max-w-4xl mx-auto w-full focus">
       <Textarea
         ref={textAreaRef}
         bordered
@@ -78,7 +78,7 @@ export const ChatInput: React.FC<IChatInputProps> = ({
 
       {/* Styled paperclip icon to trigger file input */}
       <label htmlFor="file-upload" className="cursor-pointer absolute bottom-2 right-12">
-        <FontAwesomeIcon icon={faPaperclip} size="lg" />
+        <FontAwesomeIcon className="absolute bottom-2 right-2" icon={faPaperclip} size="lg" />
       </label>
       <input
         id="file-upload"

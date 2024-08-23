@@ -25,7 +25,7 @@ export const ChatInterface: React.FC<IChatUIProps> = ({
   );
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen pt-8 pb-2">
       <div ref={chatConversationsContainerRef} className="flex-grow overflow-y-auto">
         <ChatConversations
           conversations={conversations}
