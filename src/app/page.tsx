@@ -49,20 +49,6 @@ export default function Home() {
       }
 
       const data = await response.json();
-      const backendResponse = data.response; // Extract the response object
-
-      let formattedMessage;
-      if (backendResponse.course_id) {
-        formattedMessage = `Course: ${backendResponse.course_name}\nPrerequisites:\n${
-          Array.isArray(backendResponse.prerequisites)
-            ? backendResponse.prerequisites.join("\n")
-            : backendResponse.prerequisites
-        }`;
-      } else if (backendResponse.error) {
-        formattedMessage = backendResponse.error;
-      } else {
-        formattedMessage = backendResponse;
-      }
 
       // Add AI response to conversations
       setConversations((prev) => [
@@ -70,11 +56,11 @@ export default function Home() {
         {
           id: (prev.length + 1).toString(),
           role: MessageRole.ASSISTANT,
-          message: formattedMessage,
+          message: data.content,
         },
       ]);
 
-      return formattedMessage;
+      return data.content;
     } catch (error) {
       console.error("Error fetching response:", error);
 

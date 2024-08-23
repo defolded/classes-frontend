@@ -1,38 +1,16 @@
+import { MessageRole } from "@/enums/MessageRole";
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
+import { IChatMessageProps } from "@/types";
 import { faClipboard, faRobot, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { codeBlockLookBack, findCompleteCodeBlock, findPartialCodeBlock } from "@llm-ui/code";
-import { markdownLookBack } from "@llm-ui/markdown";
-import { useLLMOutput } from "@llm-ui/react";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Avatar, Button } from "react-daisyui";
-import { MessageRole } from "../enums/MessageRole";
-import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
-import { IChatMessageProps } from "../types";
-import { CodeBlock } from "./CodeBlock";
-import { MarkdownComponent } from "./MarkdownComponent";
 
-export const ChatMessage: React.FC<IChatMessageProps> = ({ message }) => {
+export const ChatMessage = ({ message }: IChatMessageProps) => {
   const messageRef = useRef<HTMLDivElement>(null);
   const [, copy] = useCopyToClipboard();
 
   const isBot = message.role !== MessageRole.USER;
-
-  const { blockMatches } = useLLMOutput({
-    llmOutput: message.message,
-    fallbackBlock: {
-      component: MarkdownComponent,
-      lookBack: markdownLookBack(),
-    },
-    blocks: [
-      {
-        component: CodeBlock,
-        findCompleteMatch: findCompleteCodeBlock(),
-        findPartialMatch: findPartialCodeBlock(),
-        lookBack: codeBlockLookBack(),
-      },
-    ],
-    isStreamFinished: true,
-  });
 
   return (
     <div className="mt-4">
@@ -53,21 +31,14 @@ export const ChatMessage: React.FC<IChatMessageProps> = ({ message }) => {
         <h4 className="font-semibold select-none">{isBot ? "Robot" : "You"}</h4>
       </div>
       <div className="ml-16 mt-4">
-        <div ref={messageRef}>
-          {blockMatches.map((blockMatch, index) => {
-            const Component = blockMatch.block.component;
-            return <Component key={index} blockMatch={blockMatch} />;
-          })}
-        </div>
+        <div ref={messageRef}>{message.message}</div>
         {isBot && (
           <div className="mt-4">
-            <Button
-              size="sm"
-              shape="square"
-              color="ghost"
-              onClick={() => copy(messageRef?.current?.innerText || "")}
-            >
-              <FontAwesomeIcon icon={faClipboard} />
+            <Button size="sm" shape="square" color="ghost">
+              <FontAwesomeIcon
+                icon={faClipboard}
+                onClick={() => copy(messageRef?.current?.innerHTML || "")}
+              />
             </Button>
           </div>
         )}
