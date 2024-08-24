@@ -5,6 +5,7 @@ import { faClipboard, faRobot, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
 import { Avatar, Button } from "react-daisyui";
+import ReactMarkdown from "react-markdown";
 
 export const ChatMessage = ({ message }: IChatMessageProps) => {
   const messageRef = useRef<HTMLDivElement>(null);
@@ -31,7 +32,9 @@ export const ChatMessage = ({ message }: IChatMessageProps) => {
         <h4 className="font-semibold select-none">{isBot ? "Robot" : "You"}</h4>
       </div>
       <div className="ml-16 mt-4">
-        <div ref={messageRef}>{message.message}</div>
+        <div ref={messageRef}>
+          <ReactMarkdown>{message.message}</ReactMarkdown>
+        </div>
         {isBot && (
           <div className="mt-4">
             <Button size="sm" shape="square" color="ghost">

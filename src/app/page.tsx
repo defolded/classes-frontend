@@ -7,7 +7,7 @@ import { ChatInterface } from "../components/ChatInterface";
 import { MessageRole } from "../enums/MessageRole";
 import { Conversations } from "../types";
 
-const BACKEND_URL = "http://127.0.0.1:8000"; // update with api url
+const BACKEND_URL = "http://127.0.0.1:8001"; // update with api url
 
 export default function Home() {
   const [isQuerying, setIsQuerying] = useState<boolean>(false);
