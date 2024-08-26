@@ -7,7 +7,6 @@ This is the frontend component of a college course scheduling and graduation pla
 - **User-Friendly Interface:** Designed with a clean and responsive UI to make it easy for students to interact with the chat-bot.
 - **File Upload:** Allows users to upload their PDF transcripts, which are processed by the backend to provide personalized scheduling advice.
 - **Real-time Communication:** Enables real-time interaction with the chat-bot, powered by the backend's integration with LLaMA-based language models.
-- **Responsive Design:** Ensures the application works well on a variety of devices, from desktops to mobile phones.
 
 ## Installation
 
@@ -39,19 +38,19 @@ bun install
 First, clone the repository and navigate to the project directory:
 
 ```bash
-git clone https://github.com/yourusername/college-course-scheduler-frontend.git
-cd college-course-scheduler-frontend
+git clone https://github.com/defolded/classes-frontend.git
+cd classes-frontend
 ```
 
 ### Environment Variables
 
-The frontend application may need to communicate with the backend API. To configure the API endpoint, create a `.env` file in the root of the project:
+The frontend application needs to communicate with the backend API. To configure the API endpoint, open `app/page.tsx` and change `BACKEND_URL`:
 
-```env
-REACT_APP_API_URL=http://localhost:8001
+```js
+const BACKEND_URL = "http://127.0.0.1:8001";
 ```
 
-Replace `http://localhost:8000` with the URL of your backend server if it's different.
+Replace `http://localhost:8001` with the URL of your backend server if it's different.
 
 ## Running the Application
 
