@@ -30,8 +30,8 @@ bun install
 
 ### Prerequisites
 
-- Node.js 14+
-- npm or yarn
+- Node.js 18.18+
+- npm, yarn, or bun
 
 ### Install Dependencies
 
